@@ -31,7 +31,7 @@ export class DocumentService {
         tempDocument.date = new Date(Date.now());
         tempDocument.status = DocumentStatus.PROCESSING;
         tempDocument.price = tempDocument.items.reduce((accumulator, obj) => {
-            return accumulator + obj.price;
+            return accumulator + (obj.quantity * obj.price);
         }, 0);
 
         const newDocument = await this.DocumentDAO.create(tempDocument as Document);
